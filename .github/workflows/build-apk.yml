@@ -57,14 +57,18 @@ jobs:
         pip install kivy==2.3.0 plyer==2.1.0
     
     - name: Build with Buildozer
+      timeout-minutes: 120
       env:
           ANDROID_HOME: /tmp/android-sdk
           ANDROID_NDK_HOME: /tmp/android-ndk
+          BUILDOZER_ACCEPT_SDK_LICENSE: "1"
       run: |
         export JAVA_HOME=$JAVA_HOME_17_X64
+        # 预先创建 Android SDK 许可目录并接受许可
+        mkdir -p ~/.android
+        echo -e "\n# Accept licenses" > ~/.android/repositories.cfg
         if [ "${{ github.event.inputs.build_release }}" = "true" ]; then
           echo "Building RELEASE APK..."
-          # 修改 buildozer.spec 为 release 模式
           sed -i 's/release = 0/release = 1/' buildozer.spec
           buildozer android release
         else
