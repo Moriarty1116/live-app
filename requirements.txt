@@ -1,0 +1,11 @@
+# PersonalManager - 个人财务管理与时间管理应用
+# 核心依赖
+kivy>=2.3.0,<3.0.0
+plyer>=2.1.0,<3.0.0
+
+# 数据库（Kivy已内置sqlite3支持）
+# 无需额外安装
+
+# Android平台特定依赖（仅打包时需要）
+# python-for-android>=2023.09.22  # 仅用于Android构建
+（内容由AI生成，仅供参考）
